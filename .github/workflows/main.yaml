@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - name: Get latest tag
+        id: latest-tag
+        run: |
+          echo "::set-output name=tag-name::$(curl -s ${{ env.GITHUB_API }}repos/${{ env.GITHUB_REPOSITORY }}/tags | jq '[ .[].name | select(test("^v")) ] | max_by(split("."))'"
+
+      - name: Print latest tag
+        run: |
+          echo ${{ steps.latest-tag.outputs.tag-name }}
+
       - name: Hello World
         run: |
           echo "Hello World!"
