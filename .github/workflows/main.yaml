@@ -22,9 +22,9 @@ jobs:
 
       - name: JS
         run: |
-          node -e "console.log('Hello JS!'')"
+          node -e "console.log('Hello JS!')"
 
       - name: Echo
         run: |
-          echo "GITHUB_ACTION_REPOSITORY: ${{ env.GITHUB_ACTION_REPOSITORY }}"
-          echo "GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}"
+          echo "GITHUB_ACTION_REPOSITORY: $GITHUB_ACTION_REPOSITORY"
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
