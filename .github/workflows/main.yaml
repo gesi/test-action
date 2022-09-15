@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - name: Test
+        run: |
+          curl $GITHUB_API/repos/GITHUB_REPOSITORY/tags
       - name: Get latest tag
         id: latesttag
         run: |
