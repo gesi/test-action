@@ -10,13 +10,13 @@ jobs:
     timeout-minutes: 2
     steps:
       - name: Get latest tag
-        id: latest-tag
+        id: latesttag
         run: |
-          echo "::set-output name=tag-name::$(curl -s $GITHUB_API/repos/$GITHUB_REPOSITORY/tags | jq '[ .[].name | select(test("^v")) ] | max_by(split("."))')"
+          echo "::set-output name=tag::$(curl -s $GITHUB_API/repos/$GITHUB_REPOSITORY/tags | jq '[ .[].name | select(test("^v")) ] | max_by(split("."))')"
 
       - name: Print latest tag
         run: |
-          echo ${{ steps.latest-tag.outputs.tag-name }}
+          echo ${{ steps.latesttag.outputs.tag }}
 
       - name: Hello World
         run: |
