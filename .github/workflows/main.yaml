@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Test
         run: |
+          env
           curl $GITHUB_API/repos/$GITHUB_REPOSITORY/tags
       - name: Get latest tag
         id: latesttag
