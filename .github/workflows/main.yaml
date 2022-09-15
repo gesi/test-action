@@ -12,7 +12,7 @@ jobs:
       - name: Get latest tag
         id: latest-tag
         run: |
-          echo "::set-output name=tag-name::$(curl -s ${{ env.GITHUB_API }}repos/${{ env.GITHUB_REPOSITORY }}/tags | jq '[ .[].name | select(test("^v")) ] | max_by(split("."))'"
+          echo "::set-output name=tag-name::$(curl -s $GITHUB_API/repos/$GITHUB_REPOSITORY/tags | jq '[ .[].name | select(test("^v")) ] | max_by(split("."))'"
 
       - name: Print latest tag
         run: |
