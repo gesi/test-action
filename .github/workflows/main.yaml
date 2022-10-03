@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - name: set vars
+        run: |
+          NPM_TOKEN=testest
+          echo NPM_TOKEN=$NPM_TOKEN >> $GITHUB_ENV
+
       - name: Get latest version tag
         id: latest-version
         run: |
@@ -21,6 +26,13 @@ jobs:
       - name: Hello World
         run: |
           echo "Hello World!"
+
+      - name: Install deps
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+          cat .npmrc | awk '{print substr($0,length-5,5)}'
+        env:
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
       - uses: actions/checkout@v3
 
