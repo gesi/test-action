@@ -30,7 +30,8 @@ jobs:
       - name: Install deps
         run: |
           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-          cat .npmrc | awk '{print substr($0,length-5,6)}'
+          cat .npmrc
+          echo $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
